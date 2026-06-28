@@ -17,6 +17,7 @@
 	<p>Idioma: ${cancion.idioma}</p>
 	<p>Fecha de creacion: ${cancion.fechaCreacion}</p>
 	<p>Fecha de actualizacion: ${cancion.fechaActualizacion}</p>
+	<a href="/canciones/formulario/editar/${cancion.id}">Editar cancion</a>
 	<a href="/canciones">Volver a lista de canciones</a>
 </body>
 </html>

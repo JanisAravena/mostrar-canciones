@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 
 import com.janis.modelos.Cancion;
 import com.janis.servicios.ServicioCanciones;
@@ -44,6 +45,22 @@ public class ControladorCanciones {
 			return "agregarCancion.jsp";
 		}
 		servicio.agregarCancion(cancion);
+		return "redirect:/canciones";
+	}
+
+	@GetMapping("/canciones/formulario/editar/{idCancion}")
+	public String formularioEditarCancion(@PathVariable("idCancion") Long idCancion, Model model) {
+		Cancion cancion = servicio.obtenerCancionPorId(idCancion);
+		model.addAttribute("cancion", cancion);
+		return "editarCancion.jsp";
+	}
+
+	@PutMapping("/canciones/procesa/editar/{idCancion}")
+	public String procesarEditarCancion(@Valid @ModelAttribute("cancion") Cancion cancion, BindingResult result) {
+		if (result.hasErrors()) {
+			return "editarCancion.jsp";
+		}
+		servicio.actualizaCancion(cancion);
 		return "redirect:/canciones";
 	}
 }
