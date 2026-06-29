@@ -61,4 +61,24 @@ Actualiza la canción y redirige a `/canciones`. Si existen errores de validaci�
 <img width="935" height="322" alt="image" src="https://github.com/user-attachments/assets/a8d42d5c-76ad-4b9a-8561-3f40c54e2854" />
 
 
+# Cuarta Core: Eliminar Canción
+
+## Servicio
+
+**Método:** `eliminaCancion(Long)`
+
+Elimina una canción de la base de datos según su id.
+<img width="987" height="221" alt="image" src="https://github.com/user-attachments/assets/7710275b-2909-41b8-89b6-22a96f7a9bf3" />
+
+### `/canciones/eliminar/{idCancion}`
+**Método:** `procesarEliminarCancion()`
+
+Elimina la canción indicada y redirige a `/canciones`.
+
+En `detalleCancion.jsp` se agregó un botón para eliminar la canción, el cual redirige a la ruta `/canciones/eliminar/{idCancion}`.
+<img width="437" height="510" alt="image" src="https://github.com/user-attachments/assets/33fcaf46-e775-413b-823d-1cea1b294290" />
+<img width="396" height="322" alt="image" src="https://github.com/user-attachments/assets/c84568f7-5902-4869-af93-1d42f1e95bce" />
+
+
+
 
