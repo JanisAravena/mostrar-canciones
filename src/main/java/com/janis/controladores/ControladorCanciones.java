@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 
+import com.janis.modelos.Artista;
 import com.janis.modelos.Cancion;
+import com.janis.servicios.ServicioArtistas;
 import com.janis.servicios.ServicioCanciones;
 
 import jakarta.validation.Valid;
@@ -21,6 +23,9 @@ public class ControladorCanciones {
 
 	@Autowired
 	private ServicioCanciones servicio;
+
+	@Autowired
+	private ServicioArtistas servicioArtistas;
 
 	@GetMapping("/canciones")
 	public String desplegarCanciones(Model model) {
@@ -36,13 +41,15 @@ public class ControladorCanciones {
 	}
 
 	@GetMapping("/canciones/formulario/agregar")
-	public String formularioAgregarCancion(@ModelAttribute("cancion") Cancion cancion) {
+	public String formularioAgregarCancion(@ModelAttribute("cancion") Cancion cancion, Model model) {
+		model.addAttribute("listaArtistas", servicioArtistas.obtenerTodosLosArtistas());
 		return "agregarCancion.jsp";
 	}
 
 	@PostMapping("/canciones/procesa/agregar")
-	public String procesarAgregarCancion(@Valid @ModelAttribute("cancion") Cancion cancion, BindingResult result) {
+	public String procesarAgregarCancion(@Valid @ModelAttribute("cancion") Cancion cancion, BindingResult result, Model model) {
 		if (result.hasErrors()) {
+			model.addAttribute("listaArtistas", servicioArtistas.obtenerTodosLosArtistas());
 			return "agregarCancion.jsp";
 		}
 		servicio.agregarCancion(cancion);
@@ -53,12 +60,14 @@ public class ControladorCanciones {
 	public String formularioEditarCancion(@PathVariable("idCancion") Long idCancion, Model model) {
 		Cancion cancion = servicio.obtenerCancionPorId(idCancion);
 		model.addAttribute("cancion", cancion);
+		model.addAttribute("listaArtistas", servicioArtistas.obtenerTodosLosArtistas());
 		return "editarCancion.jsp";
 	}
 
 	@PutMapping("/canciones/procesa/editar/{idCancion}")
-	public String procesarEditarCancion(@Valid @ModelAttribute("cancion") Cancion cancion, BindingResult result) {
+	public String procesarEditarCancion(@Valid @ModelAttribute("cancion") Cancion cancion, BindingResult result, Model model) {
 		if (result.hasErrors()) {
+			model.addAttribute("listaArtistas", servicioArtistas.obtenerTodosLosArtistas());
 			return "editarCancion.jsp";
 		}
 		servicio.actualizaCancion(cancion);

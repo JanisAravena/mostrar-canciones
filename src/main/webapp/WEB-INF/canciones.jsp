@@ -21,7 +21,7 @@
 			<c:forEach var="cancion" items="${listaCanciones}">
 				<tr>
 					<td>${cancion.titulo}</td>
-					<td>${cancion.artista}</td>
+					<td>${cancion.artista.nombre} ${cancion.artista.apellido}</td>
 					<td>
 						<a href="/canciones/detalle/${cancion.id}">Detalle</a>
 					</td>
@@ -30,5 +30,6 @@
 		</tbody>
 	</table>
 	<a href="/canciones/formulario/agregar">Agregar cancion</a>
+	<a href="/artistas">Ir a artistas</a>
 </body>
 </html>

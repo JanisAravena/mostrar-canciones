@@ -1,6 +1,7 @@
 package com.janis.modelos;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -11,34 +12,26 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Size;
 
 @Entity
-@Table(name = "canciones")
-public class Cancion {
+@Table(name = "artistas")
+public class Artista {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Size(min = 5, message = "Al menos 5 caracteres de longitud.")
-	private String titulo;
-
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "artista_id")
-	private Artista artista;
+	@Size(min = 3, message = "Al menos 3 caracteres de longitud.")
+	private String nombre;
 
 	@Size(min = 3, message = "Al menos 3 caracteres de longitud.")
-	private String album;
+	private String apellido;
 
 	@Size(min = 3, message = "Al menos 3 caracteres de longitud.")
-	private String genero;
-
-	@Size(min = 3, message = "Al menos 3 caracteres de longitud.")
-	private String idioma;
+	private String biografia;
 
 	@CreationTimestamp
 	@Column(name = "fecha_creacion", updatable = false)
@@ -48,7 +41,10 @@ public class Cancion {
 	@Column(name = "fecha_actualizacion")
 	private LocalDateTime fechaActualizacion;
 
-	public Cancion() {
+	@OneToMany(mappedBy = "artista", fetch = FetchType.LAZY)
+	private List<Cancion> canciones;
+
+	public Artista() {
 	}
 
 	public Long getId() {
@@ -59,44 +55,28 @@ public class Cancion {
 		this.id = id;
 	}
 
-	public String getTitulo() {
-		return titulo;
+	public String getNombre() {
+		return nombre;
 	}
 
-	public void setTitulo(String titulo) {
-		this.titulo = titulo;
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 
-	public Artista getArtista() {
-		return artista;
+	public String getApellido() {
+		return apellido;
 	}
 
-	public void setArtista(Artista artista) {
-		this.artista = artista;
+	public void setApellido(String apellido) {
+		this.apellido = apellido;
 	}
 
-	public String getAlbum() {
-		return album;
+	public String getBiografia() {
+		return biografia;
 	}
 
-	public void setAlbum(String album) {
-		this.album = album;
-	}
-
-	public String getGenero() {
-		return genero;
-	}
-
-	public void setGenero(String genero) {
-		this.genero = genero;
-	}
-
-	public String getIdioma() {
-		return idioma;
-	}
-
-	public void setIdioma(String idioma) {
-		this.idioma = idioma;
+	public void setBiografia(String biografia) {
+		this.biografia = biografia;
 	}
 
 	public LocalDateTime getFechaCreacion() {
@@ -113,6 +93,14 @@ public class Cancion {
 
 	public void setFechaActualizacion(LocalDateTime fechaActualizacion) {
 		this.fechaActualizacion = fechaActualizacion;
+	}
+
+	public List<Cancion> getCanciones() {
+		return canciones;
+	}
+
+	public void setCanciones(List<Cancion> canciones) {
+		this.canciones = canciones;
 	}
 
 }

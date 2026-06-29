@@ -12,7 +12,7 @@
 	<h1>Detalle de cancion</h1>
 	<p>ID: ${cancion.id}</p>
 	<p>Titulo: ${cancion.titulo}</p>
-	<p>Artista: ${cancion.artista}</p>
+	<p>Artista: ${cancion.artista.nombre} ${cancion.artista.apellido}</p>
 	<p>Album: ${cancion.album}</p>
 	<p>Genero: ${cancion.genero}</p>
 	<p>Idioma: ${cancion.idioma}</p>
