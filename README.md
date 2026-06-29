@@ -79,6 +79,45 @@ En `detalleCancion.jsp` se agregó un botón para eliminar la canción, el cual 
 <img width="437" height="510" alt="image" src="https://github.com/user-attachments/assets/33fcaf46-e775-413b-823d-1cea1b294290" />
 <img width="396" height="322" alt="image" src="https://github.com/user-attachments/assets/c84568f7-5902-4869-af93-1d42f1e95bce" />
 
+# Quinta Core: Canciones y Artistas
 
+## Modelo
+
+Se agregó la entidad `Artista` y se estableció una relación **Uno a Muchos** con `Cancion`.
+
+## Servicio
+
+**Métodos:**
+- `obtenerTodosLosArtistas()`
+- `obtenerArtistaPorId(Long)`
+- `agregarArtista(Artista)`
+
+## Rutas
+
+### `/artistas`
+**Método:** `desplegarArtistas()`
+
+Muestra la lista de artistas.
+<img width="317" height="227" alt="image" src="https://github.com/user-attachments/assets/13bcdf14-07c6-4412-b277-2dc77a1c3b54" />
+
+### `/artistas/detalle/{idArtista}`
+**Método:** `desplegarDetalleArtista()`
+
+Muestra el detalle de un artista y sus canciones.
+<img width="917" height="471" alt="image" src="https://github.com/user-attachments/assets/35a8ebdf-723f-4b3f-89aa-7c043fdee130" />
+
+
+### `/artistas/formulario/agregar/{idArtista}`
+**Método:** `formularioAgregarArtista()`
+
+Muestra la vista `agregarArtista.jsp`.
+<img width="452" height="302" alt="image" src="https://github.com/user-attachments/assets/46cf4fa2-d06d-4447-a57c-92fc7b5882b2" />
+
+### `/artistas/procesa/agregar`
+**Método:** `procesarAgregarArtista()`
+
+Guarda un artista y redirige a `/artistas`.
+
+<img width="387" height="322" alt="image" src="https://github.com/user-attachments/assets/8b9e2af5-abd5-42b3-aff3-50ca629992a2" />
 
 
